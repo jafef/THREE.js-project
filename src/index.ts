@@ -54,6 +54,7 @@ new GLTFLoader().load('models/Soldier.glb', function (gltf) {
     })
 
     characterControls = new CharacterControls(model, mixer, animationsMap, orbitControls, camera, 'Idle')
+   
 });
 
 
@@ -67,12 +68,13 @@ new GLTFLoader().load('models/civil.glb', function (gltf) {
     const clip2 = THREE.AnimationClip.findByName(clips, 'Action02');
 
     const action = mixer.clipAction(clip);
-    //action.play();
+    action.play();
     action.timeScale= 0.5;
     const action2 = mixer.clipAction(clip2);
     action2.play();
     action2.timeScale= 0.5;
 
+    
     
 
 });
@@ -108,7 +110,7 @@ function animate() {
     let mixerUpdateDelta = clock.getDelta();
     if (characterControls ) {
         characterControls.update(mixerUpdateDelta, keysPressed);
-        mixer.update(mixerUpdateDelta);
+      //  mixer.update(mixerUpdateDelta);
     }
    
     orbitControls.update()
@@ -123,7 +125,7 @@ function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    keyDisplayQueue.updatePosition()
+    //keyDisplayQueue.updatePosition()
 }
 window.addEventListener('resize', onWindowResize);
 
@@ -178,5 +180,6 @@ function light() {
     dirLight.shadow.mapSize.width = 4096;
     dirLight.shadow.mapSize.height = 4096;
     scene.add(dirLight);
-    // scene.add( new THREE.CameraHelper(dirLight.shadow.camera))
+    //scene.add( new THREE.CameraHelper(dirLight.shadow.camera))
 }
+
